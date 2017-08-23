@@ -13,13 +13,14 @@ const styles = StyleSheet.create({
 });
 
 const LoginStatusMessage = ({ isLoggedIn, dispatch }) => {
+  console.log(user);
   if (!isLoggedIn) {
     return <Text>Please log in</Text>;
   }
   return (
     <View>
       <Text style={styles.welcome}>
-        {'You are "logged in" right now'}
+        {'You are "logged in" as ' + 'test' + ' right now'}
       </Text>
       <Button
         onPress={() =>
@@ -36,7 +37,7 @@ LoginStatusMessage.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isLoggedIn: state.auth.isLoggedIn,
+  isLoggedIn: state.auth.isLoggedIn
 });
 
 export default connect(mapStateToProps)(LoginStatusMessage);
