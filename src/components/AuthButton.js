@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button } from 'react-native';
+import { logoutUser } from '../actions'
 import { NavigationActions } from 'react-navigation';
 
 const AuthButton = ({ logout, loginScreen, isLoggedIn }) => (
@@ -22,7 +23,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch({ type: 'Logout' }),
+  logout: () => logoutUser(dispatch),
   loginScreen: () =>
     dispatch(NavigationActions.navigate({ routeName: 'Login' })),
 });

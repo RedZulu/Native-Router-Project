@@ -1,6 +1,78 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { connect } from 'react-redux';
+import { emailChanged, passwordChanged, loginUser } from '../actions'
+import { Card, CardSection, Input, Button, Spinner } from './common';
+import { StyleSheet, Text, View } from 'react-native';
+
+class LoginScreen extends Component {
+  onEmailChange(text) {
+    this.props.emailChanged(text);
+  }
+
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
+  }
+
+  onButtonPress() {
+    const { email, password } = this.props;
+
+    this.props.loginUser({ email, password });
+  }
+
+  renderButton() {
+    if (this.props.loading) {
+      return <Spinner style={{ flex: 1 }} size="large" />;
+    }
+
+    return (
+      <Button onPress={this.onButtonPress.bind(this)}>
+        Login
+      </Button>
+    )
+  }
+
+  render() {
+    return(
+      <Card>
+        <CardSection>
+          <Input
+            label="Email"
+            placeholder="email@gmail.com"
+            onChangeText={this.onEmailChange.bind(this)}
+            value={this.props.email}
+          />
+        </CardSection>
+
+        <CardSection>
+          <Input
+            secureTextEntry
+            label="Password"
+            placeholder="password"
+            onChangeText={this.onPasswordChange.bind(this)}
+            value={this.props.password}
+          />
+        </CardSection>
+
+        <Text style={styles.errorTextStyle}>
+          {this.props.error}
+        </Text>
+
+        <CardSection>
+          {this.renderButton()}
+        </CardSection>
+      </Card>
+        );
+      }
+  }
+
+LoginScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
+
+LoginScreen.navigationOptions = {
+  title: 'Log In',
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -16,27 +88,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginScreen = ({ navigation }) => (
-  <View style={styles.container}>
-    <Text style={styles.welcome}>
-      Screen A
-    </Text>
-    <Text style={styles.instructions}>
-      This is great
-    </Text>
-    <Button
-      onPress={() => navigation.dispatch({ type: 'Login' })}
-      title="Log in"
-    />
-  </View>
-);
+const mapStateToProps = ({ auth }) => {
+  const { email, password, error, loading } = auth;
 
-LoginScreen.propTypes = {
-  navigation: PropTypes.object.isRequired,
+  return { email, password, error, loading };
 };
 
-LoginScreen.navigationOptions = {
-  title: 'Log In',
-};
-
-export default LoginScreen;
+export default connect(mapStateToProps, {
+  emailChanged, passwordChanged, loginUser
+})(LoginScreen);
