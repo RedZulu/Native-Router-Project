@@ -5,10 +5,6 @@ import { userUpdate } from '../actions';
 import { CardSection, Input } from './common';
 
 class UserForm extends Component {
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   render() {
     return (
       <View>

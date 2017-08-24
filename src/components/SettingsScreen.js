@@ -6,11 +6,11 @@ import { Card, CardSection, Button } from './common';
 import UserForm from './UserForm';
 
 class SettingsScreen extends Component {
-  componentWillMount() {
-    _.each(this.props.user, (value, prop) => {
-      this.props.userUpdate({ prop, value });
-    });
-  }
+    componentWillMount() {
+      _.each(this.props.auth.user, (value, prop) => {
+        this.props.userUpdate({ prop, value });
+      });
+    }
 
     onDisplayNameChange(text) {
       this.props.displayNameChanged(text);
@@ -46,8 +46,9 @@ SettingsScreen.navigationOptions = {
 
 const mapStateToProps = (state) => {
   const { displayName } = state.userForm;
+  const auth = state.auth;
 
-  return { displayName };
+  return { displayName, auth };
 };
 
 export default connect(mapStateToProps, {userUpdate, userSave})(SettingsScreen);
