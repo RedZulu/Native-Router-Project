@@ -1,10 +1,7 @@
 import {
-  EMAIL_CHANGED,
-  PASSWORD_CHANGED,
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAIL,
-  LOGIN_USER,
-  LOGOUT_USER
+  LOGOUT_USER,
+  USER_SAVE_SUCCESS
 } from '../actions/types';
 
 import { NavigationActions } from 'react-navigation';
@@ -31,6 +28,12 @@ export default(state = initialNavState, action) => {
     case LOGOUT_USER:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Login' }),
+        state
+      );
+      break;
+    case USER_SAVE_SUCCESS:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Profile' }),
         state
       );
       break;

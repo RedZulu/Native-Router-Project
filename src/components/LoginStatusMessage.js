@@ -16,6 +16,7 @@ const LoginStatusMessage = ({ isLoggedIn, user, dispatch }) => {
   if (!isLoggedIn) {
     return <Text>Please log in</Text>;
   }
+  console.log(user);
   return (
     <View>
       <Text style={styles.welcome}>
