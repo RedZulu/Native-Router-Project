@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,11 +18,17 @@ const styles = StyleSheet.create({
 
 class ProfileScreen extends Component {
   render() {
+
     return(
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Profile Screen
         </Text>
+
+        <Button
+            onPress={() => this.props.navigation.navigate('Settings')}
+            title="Settings"
+        />
       </View>
     );
   }
@@ -32,4 +38,4 @@ ProfileScreen.navigationOptions = {
   title: 'Profile',
 };
 
-export default ProfileScreen;
+export default connect()(ProfileScreen);
