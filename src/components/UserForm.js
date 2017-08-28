@@ -2,12 +2,28 @@ import React, { Component } from 'react';
 import { View, Text, Picker } from 'react-native';
 import { connect } from 'react-redux';
 import { userUpdate } from '../actions';
-import { CardSection, Input } from './common';
+import { CardSection, Input, Button } from './common';
+import ImagePicker from 'react-native-image-crop-picker';
 
 class UserForm extends Component {
+  pickImage() {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true
+    }).then(image => {
+      console.log(image);
+    });
+  }
+
   render() {
     return (
       <View>
+        <CardSection>
+          <Button onPress={this.pickImage.bind(this)}>
+            Pick Image
+          </Button>
+        </CardSection>
         <CardSection>
           <Input
             label="Username"
