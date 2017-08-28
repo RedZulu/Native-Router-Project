@@ -3,8 +3,16 @@ import {
   USER_UPDATE,
   USER_FETCH_SUCCESS,
   USER_SAVE_SUCCESS,
-  DISPLAY_NAME_CHANGED
+  DISPLAY_NAME_CHANGED,
+  PROFILE_PIC_CHANGED
 } from './types';
+
+export const profilePicChanged = (text) => {
+  return {
+    type: PROFILE_PIC_CHANGED,
+    payload: text
+  }
+}
 
 export const displayNameChanged = (text) => {
   return {
