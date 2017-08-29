@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions'
 import { Card, CardSection, Input, Button, Spinner } from './common';
 import { Text, View } from 'react-native';
+import UserForm from './UserForm';
 
-class LoginScreen extends Component {
+class SignUpScreen extends Component {
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
@@ -34,7 +35,8 @@ class LoginScreen extends Component {
 
   render() {
     return(
-      <Card>
+      <Card style={styles.container}>
+        <UserForm />
         <CardSection>
           <Input
             label="Email"
@@ -61,26 +63,17 @@ class LoginScreen extends Component {
         <CardSection>
           {this.renderButton()}
         </CardSection>
-
-        <CardSection>
-          <Button
-            enableEmptySections
-            onPress={() => this.props.navigation.navigate('SignUp')}
-          >
-            Sign Up
-          </Button>
-        </CardSection>
       </Card>
         );
       }
   }
 
-LoginScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+SignUpScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 };
 
-LoginScreen.navigationOptions = {
-  title: 'Log In'
+SignUpScreen.navigationOptions = {
+  title: 'Sign Up',
 };
 
 const styles = {
@@ -89,12 +82,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
+  }
 };
 
 const mapStateToProps = ({ auth }) => {
@@ -105,4 +93,4 @@ const mapStateToProps = ({ auth }) => {
 
 export default connect(mapStateToProps, {
   emailChanged, passwordChanged, loginUser
-})(LoginScreen);
+})(SignUpScreen);

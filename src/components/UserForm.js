@@ -23,7 +23,7 @@ class UserForm extends Component {
 
   render() {
     const picCheck = this.props.photoURL ? (
-      <TouchableOpacity onPress={ () => this.openPicker() }>
+      <TouchableOpacity style={styles.imagePic} onPress={ () => this.openPicker() }>
         <Image
          style={{width: 100, height: 100, margin: 5}}
          source={{uri: this.props.photoURL}}
@@ -31,7 +31,7 @@ class UserForm extends Component {
       </TouchableOpacity>
     ):(
       <Button onPress={this.openPicker.bind(this)}>
-        Pick Image
+        Profile Picture
       </Button>
     );
 
@@ -54,11 +54,12 @@ class UserForm extends Component {
 }
 
 const styles = {
-  pickerTextStyle: {
-    fontSize: 18,
-    paddingLeft: 20
+  imagePic: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
-};
+}
 
 const mapStateToProps = (state) => {
   const { displayName, photoURL } = state.userForm;

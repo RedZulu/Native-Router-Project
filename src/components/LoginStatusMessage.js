@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, Text, View } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
-const styles = StyleSheet.create({
+const styles = {
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    margin: 10
   },
-});
+  profileStyle: {
+    margin: 10
+  }
+};
 
 const LoginStatusMessage = ({ isLoggedIn, user, dispatch }) => {
   if (!isLoggedIn) {
@@ -24,6 +27,7 @@ const LoginStatusMessage = ({ isLoggedIn, user, dispatch }) => {
         {`You are logged in as ${user['email']} right now`}
       </Text>
       <Button
+        style={styles.profileStyle}
         onPress={() =>
           dispatch(NavigationActions.navigate({ routeName: 'Profile' }))}
         title="Profile"

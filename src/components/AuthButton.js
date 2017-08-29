@@ -7,10 +7,18 @@ import { NavigationActions } from 'react-navigation';
 
 const AuthButton = ({ logout, loginScreen, isLoggedIn }) => (
   <Button
+    style={styles.loginButton}
     title={isLoggedIn ? 'Log Out' : 'Open Login Screen'}
     onPress={isLoggedIn ? logout : loginScreen}
   />
 );
+
+const styles = {
+  loginButton: {
+    justifySelf: 'flex-start',
+    top: 0
+  }
+};
 
 AuthButton.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
