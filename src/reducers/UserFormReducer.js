@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case PROFILE_PIC_CHANGED:
-      return { ...state, profilePic: action.payload };
+      return { ...state, photoURL: action.payload };
     case DISPLAY_NAME_CHANGED:
       return { ...state, displayName: action.payload };
     case USER_UPDATE:

@@ -16,7 +16,6 @@ class UserForm extends Component {
     }).then(image => {
       const imagePath = image.path;
       this.props.userUpdate({ prop: 'photoURL', value: imagePath });
-      this.setState({photoUrl: imagePath});
     });
 
   }
@@ -25,7 +24,7 @@ class UserForm extends Component {
     const picCheck = this.props.photoURL ? (
       <TouchableOpacity style={styles.imagePic} onPress={ () => this.openPicker() }>
         <Image
-         style={{width: 100, height: 100, margin: 5}}
+         style={{width: 100, height: 100, margin: 5, borderRadius: 50}}
          source={{uri: this.props.photoURL}}
          />
       </TouchableOpacity>

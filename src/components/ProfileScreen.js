@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Image } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,6 +21,10 @@ class ProfileScreen extends Component {
   render() {
     return(
       <View style={styles.container}>
+        <Image
+         style={{width: 100, height: 100, margin: 5, borderRadius: 50}}
+         source={{uri: this.props.auth.user['photoURL']}}
+         />
         <Text style={styles.welcome}>
           {this.props.auth.user['displayName'] + "'s Profile"}
         </Text>

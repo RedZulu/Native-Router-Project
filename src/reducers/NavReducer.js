@@ -1,4 +1,5 @@
 import {
+  SIGN_UP_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
   LOGOUT_USER,
   USER_SAVE_SUCCESS
@@ -19,6 +20,12 @@ const initialNavState = AppNavigator.router.getStateForAction(
 export default(state = initialNavState, action) => {
   let nextState;
   switch (action.type) {
+    case SIGN_UP_USER_SUCCESS:
+        nextState = AppNavigator.router.getStateForAction(
+          NavigationActions.navigate({ routeName: 'Main' }),
+          state
+        );
+      break;
     case LOGIN_USER_SUCCESS:
         nextState = AppNavigator.router.getStateForAction(
           NavigationActions.back(),
