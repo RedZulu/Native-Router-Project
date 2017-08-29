@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-crop-picker';
-import { emailChanged, passwordChanged, signUpUser, displayNameChanged, profilePicChanged } from '../actions'
+import { signUpUser, emailChanged, passwordChanged, displayNameChanged, profilePicChanged } from '../actions'
 import { Card, CardSection, Input, Button, Spinner } from './common';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
 
@@ -109,9 +109,9 @@ class SignUpScreen extends Component {
           {this.renderButton()}
         </CardSection>
       </Card>
-        );
-      }
+    );
   }
+}
 
 SignUpScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
@@ -142,5 +142,9 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default connect(mapStateToProps, {
-  emailChanged, passwordChanged, displayNameChanged, profilePicChanged, signUpUser
+  signUpUser,
+  emailChanged,
+  passwordChanged,
+  displayNameChanged,
+  profilePicChanged
 })(SignUpScreen);
