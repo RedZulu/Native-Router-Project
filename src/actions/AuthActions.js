@@ -59,13 +59,8 @@ export const signUpUser = ({email, password, displayName, photoURL}) => {
           return imageRef.getDownloadURL()
         })
         .then((url) => {
-
           let userData = {}
-          //userData[dpNo] = url
-          //firebase.database().ref('users').child(uid).update({ ...userData})
-
           let obj = {}
-
 
           firebase.auth().currentUser.updateProfile({ displayName, photoURL: url })
           .then( () => {
@@ -76,7 +71,6 @@ export const signUpUser = ({email, password, displayName, photoURL}) => {
         .catch((error) => {
           console.log(error)
         })
-
       })
       .catch((error) => {
         console.log(error);
@@ -95,7 +89,7 @@ const signUpUserSuccess = (dispatch, user) => {
 export const loginUser = ({email, password}) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER })
-
+    
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => { loginUserSuccess(dispatch, user) })
       .catch((error) => {
