@@ -74,7 +74,7 @@ export const signUpUser = ({email, password, displayName, photoURL}) => {
       })
       .catch((error) => {
         console.log(error);
-        () => loginUserFail(dispatch)
+        loginUserFail(dispatch)
       });
   };
 };
@@ -89,12 +89,12 @@ const signUpUserSuccess = (dispatch, user) => {
 export const loginUser = ({email, password}) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER })
-    
+
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => { loginUserSuccess(dispatch, user) })
       .catch((error) => {
         console.log(error);
-        () => loginUserFail(dispatch)
+        loginUserFail(dispatch);
       });
   };
 };
