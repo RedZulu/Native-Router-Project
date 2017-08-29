@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { userUpdate, userSave, displayNameChanged } from '../actions';
+import { userUpdate, userSave, displayNameChanged, profilePicChanged } from '../actions';
 import { Card, CardSection, Button } from './common';
 import UserForm from './UserForm';
 
@@ -12,14 +12,18 @@ class SettingsScreen extends Component {
       });
     }
 
+    onProfilePicChange(text) {
+      this.props.profilePicChanged(text);
+    }
+
     onDisplayNameChange(text) {
       this.props.displayNameChanged(text);
     }
 
     onUpdatePress() {
-      const { displayName } = this.props;
+      const { displayName, photoURL } = this.props;
 
-      this.props.userSave({ displayName });
+      this.props.userSave({ displayName, photoURL });
     }
 
     onProfilePress() {
@@ -45,10 +49,10 @@ SettingsScreen.navigationOptions = {
 };
 
 const mapStateToProps = (state) => {
-  const { displayName } = state.userForm;
+  const { displayName, photoURL } = state.userForm;
   const auth = state.auth;
 
-  return { displayName, auth };
+  return { displayName, photoURL, auth };
 };
 
 export default connect(mapStateToProps, {userUpdate, userSave})(SettingsScreen);

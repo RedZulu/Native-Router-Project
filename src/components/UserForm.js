@@ -4,12 +4,8 @@ import { connect } from 'react-redux';
 import { userUpdate } from '../actions';
 import { CardSection, Input, Button } from './common';
 import ImagePicker from 'react-native-image-crop-picker';
-import RNFetchBlob from 'react-native-fetch-blob';
 
 class UserForm extends Component {
-  state = {
-    profilePic: null
-  };
 
   openPicker() {
     ImagePicker.openPicker({
@@ -19,19 +15,18 @@ class UserForm extends Component {
       cropperCircleOverlay: true
     }).then(image => {
       const imagePath = image.path;
-      this.setState({profilePic: imagePath});
+      this.props.userUpdate({ prop: 'photoURL', value: imagePath });
+      this.setState({photoUrl: imagePath});
     });
-
-  {/* var storageRef = firebase.storage().ref(user + '/profilePicture/' + file.name) */}
 
   }
 
   render() {
-    const picCheck = this.state.profilePic ? (
+    const picCheck = this.props.photoURL ? (
       <TouchableOpacity onPress={ () => this.openPicker() }>
         <Image
          style={{width: 100, height: 100, margin: 5}}
-         source={{uri: this.state.profilePic}}
+         source={{uri: this.props.photoURL}}
          />
       </TouchableOpacity>
     ):(
@@ -66,9 +61,9 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-  const { displayName } = state.userForm;
+  const { displayName, photoURL } = state.userForm;
 
-  return { displayName }
+  return { displayName, photoURL }
 };
 
 export default connect(mapStateToProps, { userUpdate })(UserForm);

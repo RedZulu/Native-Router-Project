@@ -7,7 +7,7 @@ import {
 
 const INITIAL_STATE = {
   displayName: '',
-  profilePic: ''
+  photoURL: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
