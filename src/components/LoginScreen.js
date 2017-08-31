@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions'
 import { Card, CardSection, Input, Button, Spinner } from './common';
 import { Text, View } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 class LoginScreen extends Component {
-  onEmailChange(text) {
+    onEmailChange(text) {
     this.props.emailChanged(text);
   }
 
@@ -33,9 +35,12 @@ class LoginScreen extends Component {
   }
 
   render() {
-    return(
+      const myIcon = (<Icon name="rocket" size={30} color="#900" />)
+
+      return(
       <Card>
         <CardSection>
+            {myIcon}
           <Input
             label="Email"
             placeholder="email@gmail.com"
