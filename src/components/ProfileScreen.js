@@ -23,12 +23,11 @@ class ProfileScreen extends Component {
       <View style={styles.container}>
         <Image
          style={{width: 100, height: 100, margin: 5, borderRadius: 50}}
-         source={{uri: this.props.auth.user['photoURL']}}
+         source={{uri: this.props.photoURL}}
          />
         <Text style={styles.welcome}>
-          {this.props.auth.user['displayName'] + "'s Profile"}
+          {this.props.displayName + "'s Profile"}
         </Text>
-
         <Button
           enableEmptySections
           onPress={() => this.props.navigation.navigate('Settings')}
@@ -45,8 +44,10 @@ ProfileScreen.navigationOptions = {
 
 mapStateToProps = state => {
   const auth = state.auth;
+  const displayName = state.auth.user['displayName'];
+  const photoURL = state.auth.user['photoURL'];
 
-  return { auth };
+  return { displayName, photoURL, auth };
 }
 
 export default connect(mapStateToProps)(ProfileScreen);
