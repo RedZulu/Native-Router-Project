@@ -35,12 +35,10 @@ class LoginScreen extends Component {
   }
 
   render() {
-      const myIcon = (<Icon name="rocket" size={30} color="#900" />)
-
       return(
       <Card>
         <CardSection>
-            {myIcon}
+          <Icon name="user-circle-o" size={30} color="#4286f4" />
           <Input
             label="Email"
             placeholder="email@gmail.com"
@@ -50,6 +48,7 @@ class LoginScreen extends Component {
         </CardSection>
 
         <CardSection>
+          <Icon name="key" size={30} color="#4286f4" />
           <Input
             secureTextEntry
             label="Password"

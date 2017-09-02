@@ -26,12 +26,6 @@ const LoginStatusMessage = ({ isLoggedIn, user, dispatch }) => {
       <Text style={styles.welcome}>
         {`You are logged in as ${user['email']} right now`}
       </Text>
-      <Button
-        style={styles.profileStyle}
-        onPress={() =>
-          dispatch(NavigationActions.navigate({ routeName: 'Profile' }))}
-        title="Profile"
-      />
     </View>
   );
 };

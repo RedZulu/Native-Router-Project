@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
+  settingsNav: {
+    top: 0,
+    right: 0
+  }
 });
 
 class ProfileScreen extends Component {
@@ -29,8 +33,9 @@ class ProfileScreen extends Component {
           {this.props.displayName + "'s Profile"}
         </Text>
         <Button
+          style={styles.settingsNav}
           enableEmptySections
-          onPress={() => this.props.navigation.navigate('Settings')}
+          onPress={() => this.props.navigation.navigate('DrawerOpen')}
           title="Settings"
         />
       </View>

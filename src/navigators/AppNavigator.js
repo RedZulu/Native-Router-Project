@@ -1,13 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addNavigationHelpers, StackNavigator, TabNavigator } from 'react-navigation';
+import { Button } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { addNavigationHelpers, StackNavigator, TabNavigator, DrawerNavigator, NavigationActions } from 'react-navigation';
 
 import LoginScreen from '../components/LoginScreen';
 import SignUpScreen from '../components/SignUpScreen';
 import MainScreen from '../components/MainScreen';
 import ProfileScreen from '../components/ProfileScreen';
 import SettingsScreen from '../components/SettingsScreen';
+import AuthButton from '../components/AuthButton';
+
+const profile_drawer = DrawerNavigator ({
+  Profile: { screen: ProfileScreen,
+          navigationOptions: {
+             headerLeft: null,
+             drawerLabel: 'Profile'
+          }
+        },
+  Settings: {
+     screen: SettingsScreen,
+     navigationOptions: {
+        drawerLabel: 'Settings'
+     }
+  },
+  LogOut: {
+    screen: AuthButton,
+    navigationOptions: {
+       drawerLabel: 'LogOut'
+    }
+  }
+  },{
+  drawerLabel: 'Settings',
+  drawerWidth: 200,
+  drawerPosition: 'right'
+});
 
 const nav_tab = TabNavigator({
   Main: { screen: MainScreen,
@@ -15,16 +43,10 @@ const nav_tab = TabNavigator({
              headerLeft: null
           }
         },
-  Profile: { screen: ProfileScreen,
-          navigationOptions: {
-             headerLeft: null
-          }
-        },
-  Settings: { screen: SettingsScreen,
-          navigationOptions: {
-             headerLeft: null
-          }
-         }
+  Profile: {
+    name: 'Profile',
+    screen: profile_drawer
+  }
 },{
   lazyLoad: true,
   tabBarPosition: 'bottom',
