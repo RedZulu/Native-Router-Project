@@ -14,14 +14,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-  },
-  settingsNav: {
-    top: 0,
-    right: 0
   }
 });
 
 class ProfileScreen extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: 'Profile',
+    headerRight:  <Button onPress={() => navigation.navigate('DrawerOpen')} title="Settings"/>
+  });
   render() {
     return(
       <View style={styles.container}>
@@ -32,20 +32,10 @@ class ProfileScreen extends Component {
         <Text style={styles.welcome}>
           {this.props.displayName + "'s Profile"}
         </Text>
-        <Button
-          style={styles.settingsNav}
-          enableEmptySections
-          onPress={() => this.props.navigation.navigate('DrawerOpen')}
-          title="Settings"
-        />
       </View>
     );
   }
 }
-
-ProfileScreen.navigationOptions = {
-  title: 'Profile',
-};
 
 mapStateToProps = state => {
   const auth = state.auth;
