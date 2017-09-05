@@ -52,7 +52,11 @@ const nav_tab = TabNavigator({
 });
 
 export const AppNavigator = StackNavigator({
-  Login: { screen: LoginScreen },
+  Login: { screen: LoginScreen,
+    navigationOptions: {
+      headerLeft: null
+    }
+  },
   SignUp: { screen: SignUpScreen },
   Home: { screen: nav_tab }
 });
