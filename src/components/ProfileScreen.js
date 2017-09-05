@@ -1,7 +1,9 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 const styles = StyleSheet.create({
   container: {
@@ -14,23 +16,30 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+  },
+  settingsButton: {
+    margin: 10
   }
 });
 
 class ProfileScreen extends Component {
+
   static navigationOptions = ({ navigation }) => ({
     title: 'Profile',
-    headerRight:  <Button onPress={() => navigation.navigate('DrawerOpen')} title="Settings"/>
+    headerRight:  <Icon style={styles.settingsButton} onPress={() => navigation.navigate('DrawerOpen')} name="gear" size={30} color="#4286f4" />
   });
+
   render() {
+    const {displayName, photoURL} = this.props;
+
     return(
       <View style={styles.container}>
         <Image
          style={{width: 100, height: 100, margin: 5, borderRadius: 50}}
-         source={{uri: this.props.photoURL}}
+         source={{uri: photoURL}}
          />
         <Text style={styles.welcome}>
-          {this.props.displayName + "'s Profile"}
+          {displayName + "'s Profile"}
         </Text>
       </View>
     );
