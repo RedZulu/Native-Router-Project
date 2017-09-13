@@ -8,7 +8,8 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   SIGN_UP_USER,
-  SIGN_UP_USER_SUCCESS
+  SIGN_UP_USER_SUCCESS,
+  SIGN_UP_USER_FAIL
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -36,6 +37,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, loading: true, error: '' };
     case SIGN_UP_USER_SUCCESS:
       return { ...state, ...INITIAL_STATE, user: action.payload, isLoggedIn: true};
+    case SIGN_UP_USER_FAIL:
+      return { ...state, error: 'Sign Up Failed', loading: false };
     case LOGIN_USER:
       return { ...state, loading: true, error: '' };
     case LOGIN_USER_SUCCESS:

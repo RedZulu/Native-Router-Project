@@ -23,13 +23,13 @@ const profile_drawer = DrawerNavigator ({
   Settings: {
      screen: SettingsScreen,
      navigationOptions: {
-         drawerLabel: 'Settings',
+         drawerLabel: 'Settings'
      }
   },
   LogOut: {
     screen: AuthButton,
     navigationOptions: {
-        drawerLabel: 'LogOut',
+        drawerLabel: 'LogOut'
     }
   }
   },{

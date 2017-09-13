@@ -8,7 +8,8 @@ import {
    LOGIN_USER,
    LOGOUT_USER,
    SIGN_UP_USER,
-   SIGN_UP_USER_SUCCESS
+   SIGN_UP_USER_SUCCESS,
+   SIGN_UP_USER_FAIL
 } from './types';
 
 export const emailChanged = (text) => {
@@ -29,6 +30,7 @@ export const signUpUser = ({email, password, displayName, photoURL}) => {
   return (dispatch) => {
     dispatch({ type: SIGN_UP_USER })
 
+    if(email && password && displayName && photoURL){
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(user => {
 
@@ -74,9 +76,13 @@ export const signUpUser = ({email, password, displayName, photoURL}) => {
       })
       .catch((error) => {
         console.log(error);
-        loginUserFail(dispatch)
+        signUpUserFail(dispatch);
       });
+    }else{
+      signUpUserFail(dispatch);
+    }
   };
+
 };
 
 const signUpUserSuccess = (dispatch, user) => {
@@ -85,6 +91,10 @@ const signUpUserSuccess = (dispatch, user) => {
     payload: user
   });
 };
+
+const signUpUserFail = (dispatch) => {
+  dispatch({ type: SIGN_UP_USER_FAIL });
+}
 
 export const loginUser = ({email, password}) => {
   return (dispatch) => {
@@ -109,7 +119,6 @@ const loginUserSuccess = (dispatch, user) => {
     payload: user
   });
 };
-
 
 export const logoutUser = (dispatch) => {
   dispatch({ type: LOGOUT_USER });
