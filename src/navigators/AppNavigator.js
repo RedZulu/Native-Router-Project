@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addNavigationHelpers, StackNavigator, TabNavigator, DrawerNavigator } from 'react-navigation';
+import { addNavigationHelpers, StackNavigator, TabNavigator, DrawerNavigator, DrawerItems, NavigationActions } from 'react-navigation';
+
+import { logoutUser } from '../actions'
 
 import LoginScreen from '../components/LoginScreen';
 import SignUpScreen from '../components/SignUpScreen';
@@ -32,7 +34,16 @@ const profile_drawer = DrawerNavigator ({
   }
   },{
   drawerWidth: 200,
-  drawerPosition: 'right'
+  drawerPosition: 'right',
+  contentComponent: props => <DrawerItems {...{...props, onItemPress:
+    (route) => {
+      if(route.route.key === 'LogOut'){
+        logoutUser(props.navigation.dispatch);
+      }else{
+        props.navigation.navigate(route.route.key);
+      }
+     }
+  }} />
 });
 
 const nav_tab = TabNavigator({
