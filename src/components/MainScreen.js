@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 
 import LoginStatusMessage from './LoginStatusMessage';
-import AuthButton from './AuthButton';
 
 const styles = {
   container: {
@@ -18,7 +17,6 @@ class MainScreen extends Component {
     return (
       <View style={styles.container}>
         <LoginStatusMessage />
-        <AuthButton />
       </View>
     );
   }

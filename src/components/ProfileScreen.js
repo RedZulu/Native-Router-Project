@@ -31,15 +31,16 @@ class ProfileScreen extends Component {
 
   render() {
     const {displayName, photoURL} = this.props;
+    const {isLoggedIn} = this.props.auth;
 
     return(
       <View style={styles.container}>
         <Image
          style={{width: 100, height: 100, margin: 5, borderRadius: 50}}
-         source={{uri: photoURL}}
+         source={{uri: (isLoggedIn? photoURL : '')}}
          />
         <Text style={styles.welcome}>
-          {displayName + "'s Profile"}
+          {(isLoggedIn? displayName: '') + "'s Profile"}
         </Text>
       </View>
     );
